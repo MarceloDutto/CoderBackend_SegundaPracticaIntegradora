@@ -3,29 +3,10 @@ const prevButton = document.querySelector("#prevButton");
 const nextButton = document.querySelector("#nextButton");
 const btn_addToCart = document.querySelectorAll(".cartButton");
 
-let cartId;
-
-const createCart = async () => {
-    try {
-        /* await fetch(`http://localhost:3000/api/carts`, {method: "post"}); */
-        const response = await fetch(`/api/carts`, {method: "get"});
-        const data = await response.json();
-        const lastElement = await data[data.length - 1];
-        cartId = lastElement._id
-        goToCartButton.setAttribute("href", `/carts/${cartId}`)
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-createCart()
-
 if(prevButton.getAttribute("href") === "") prevButton.style.visibility = "hidden";
 if(nextButton.getAttribute("href") === "") nextButton.style.visibility = "hidden";
 
-
-
-btn_addToCart.forEach(btn => {
+/* btn_addToCart.forEach(btn => {
     btn.addEventListener('click', e => {
         e.preventDefault();
         const eventId = btn.getAttribute("id");
@@ -39,4 +20,4 @@ const addToCart = async (pid) => {
     } catch (error) {
         console.log(error);
     }
-}   
+}    */

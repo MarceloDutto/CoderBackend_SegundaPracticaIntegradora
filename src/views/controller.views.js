@@ -26,14 +26,16 @@ class ViewsRouter extends CustomRouter {
         });
         
         this.get('/profile', ['USER'], (req, res) => {
-            /* const { user } = req.session; */
+            const user = req.user.user;
+            console.log('controller', user)
             res.render('profile', {
-                /* user, */
+                user,
                 style: 'profile.css'
             })
         });
         
         this.get('/products', ['USER'], async (req, res) => {
+            const user = req.user.user;
             const limit = parseInt(req.query.limit) || 10;
             const page = parseInt(req.query.page)  || 1; 
             const query = req.query.query || null;
@@ -47,6 +49,7 @@ class ViewsRouter extends CustomRouter {
         
                 products.length > 0 ? showProducts = true : showProducts = false;
                 res.render('products', {
+                    user,
                     showProducts,
                     products: products.map(prod => prod.toJSON()),
                     prevPageLink: response.hasPrevPage? response.prevLink : "",

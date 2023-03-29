@@ -16,6 +16,8 @@ class AuthRouter extends CustomRouter {
                 if(!isValidPassword(user, password)) return res.sendUserError('El usuario y la contraseña no coinciden');
 
                 const data = {
+                    first_name: user.first_name,
+                    last_name: user.last_name,
                     email,
                     role: user.role
                 }

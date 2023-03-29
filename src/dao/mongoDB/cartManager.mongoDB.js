@@ -27,8 +27,8 @@ class CartManager {
 
     addCart = async () => {
         try {
-            await Cart.create({products: []});
-            return {message: 'Carrito creado'};
+            const newCart = await Cart.create({products: []});
+            return {message: 'Carrito creado', newCart};
         } catch (error) {
             console.log(error);
         }
